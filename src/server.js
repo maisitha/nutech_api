@@ -10,8 +10,6 @@ const nutechInfoRoutes = require('./routes/info');
 const nutechTransactionRoutes = require('./routes/transaction');
 
 const nutechApp = express();
-
-
 const NUTECH_PORT = process.env.PORT || 8080;
 
 const nutechEnsureUploadsDir = () => {
@@ -31,6 +29,15 @@ nutechApp.use(express.urlencoded({ extended: true }));
 nutechApp.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 
+nutechApp.get('/', (req, res) => {
+    res.status(200).json({ 
+        status: 0,
+        message: 'Nutech API is running',
+        data: null
+    });
+});
+
+
 nutechApp.get('/health', (req, res) => {
     res.status(200).json({ 
         status: 'OK', 
@@ -45,16 +52,7 @@ nutechApp.use('/', nutechProfileRoutes);
 nutechApp.use('/', nutechInfoRoutes);
 nutechApp.use('/', nutechTransactionRoutes);
 
-// Root endpoint
-nutechApp.get('/', (req, res) => {
-    res.json({ 
-        status: 0,
-        message: 'Nutech API is running',
-        data: null
-    });
-});
 
-// 404 handler
 nutechApp.use('*', (req, res) => {
     res.status(404).json({
         status: 104,
