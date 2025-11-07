@@ -74,7 +74,6 @@ INSERT INTO banners (banner_name, banner_image, description) VALUES
 ('Banner 6', 'https://nutech-integrasi.app/dummy.jpg', 'Lerem Ipsum Dolor sit amet')
 ON CONFLICT (id) DO NOTHING;
 
--- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_balances_user_id ON balances(user_id);
 CREATE INDEX IF NOT EXISTS idx_transactions_user_id ON transactions(user_id);
