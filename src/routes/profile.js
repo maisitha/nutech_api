@@ -107,7 +107,7 @@ nutechProfileRouter.put('/profile/image', nutechAuthMiddleware, nutechUploadMidd
             });
         }
 
-        const nutechProfileImageUrl = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+        const nutechProfileImageUrl = `https://nutechapi-production-0061.up.railway.app/uploads/${req.file.filename}`;
 
         await nutechDbPool.query(
             'UPDATE users SET profile_image = $1 WHERE id = $2',
